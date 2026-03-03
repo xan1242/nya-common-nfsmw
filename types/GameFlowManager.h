@@ -23,6 +23,7 @@ public:
 	uint32_t CallbackPhase;
 	uint32_t CurrentGameFlowState;
 
+	static inline auto UnloadFrontend = (void(__thiscall*)(GameFlowManager*))0x6596E0;
 	static inline auto LoadTrack = (void(__thiscall*)(GameFlowManager*))0x666FE0;
 };
 static_assert(sizeof(GameFlowManager) == 0x24);

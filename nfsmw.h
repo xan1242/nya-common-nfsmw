@@ -154,6 +154,7 @@ auto FEHashUpper = (uint32_t(*)(const char*))0x5AF1C0;
 auto bStringHashUpper = (uint32_t(*)(const char*))0x460BC0;
 auto bInitTicker = (void(*)(float))0x45CDD0;
 auto bCountFreeMemory = (size_t(*)(int))0x464050;
+auto bFileExists = (bool(*)(const char*))0x65F7A0;
 auto GetRacingResolution = (void(__stdcall*)(int*, int*))0x6C27D0; // technically a thiscall but ecx is never used!
 
 auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
