@@ -18,6 +18,7 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/UCOM.h"
 #include "types/ListableSet.h"
 #include "types/Attrib.h"
+#include "types/AttribGen.h"
 #include "types/VehicleClass.h"
 #include "types/FEManager.h"
 #include "types/Event.h"
