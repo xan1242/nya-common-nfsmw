@@ -134,6 +134,19 @@ public:
 };
 #define DISPOSABLE_LIST UTL::Listable<IDisposable, 160, 0x92CA88>
 
+class PhotoFinishScreen {
+public:
+	static inline auto& mActive = *(bool*)0x91CF41;
+};
+
+class GManager {
+public:
+	static inline auto& mObj = *(GManager**)0x91E00C;
+
+	static inline auto AddSMS = (void(__thiscall*)(GManager*, int))0x5F5120;
+	static inline auto DispatchSMSMessage = (void(__thiscall*)(GManager*, int))0x5DDD20;
+};
+
 auto ExecuteRenderData = (void(*)())0x6E2F50;
 
 auto FEngHashString = (uint32_t(*)(const char*, ...))0x573140;
@@ -147,6 +160,8 @@ auto Game_StartRace = (void(*)(GRuntimeInstance* raceActivity))0x60DBD0;
 auto Game_AbandonRace = (void(*)())0x60DEB0;
 auto Game_PlayTutorial = (void(*)())0x6124E0;
 auto Game_JumpToCarLot = (void(*)())0x605250;
+auto Game_NotifyRaceFinished = (void(*)(ISimable*))0x6119F0;
+auto FE_ShowPostRaceScreen = (void(*)(bool))0x60AC20;
 
 auto LZCompress = (uint32_t(*)(uint8_t *pSrc, uint32_t sourceSize, uint8_t *pDst))0x65B350;
 auto LZDecompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x650350;

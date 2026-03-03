@@ -13,7 +13,6 @@ namespace Event {
 
 class ERestartRace : public Event::Event {
 public:
-
 	static ERestartRace* Create() {
 		return ((ERestartRace*(__thiscall*)(ERestartRace*))0x6307F0)((ERestartRace*)::Event::__nw(8));
 	}
@@ -21,7 +20,6 @@ public:
 
 class EFadeScreenOff : public Event::Event {
 public:
-
 	static EFadeScreenOff* Create() {
 		return ((EFadeScreenOff*(__thiscall*)(EFadeScreenOff*))0x621E80)((EFadeScreenOff*)::Event::__nw(12));
 	}
@@ -29,7 +27,6 @@ public:
 
 class EFadeScreenOn : public Event::Event {
 public:
-
 	static EFadeScreenOn* Create() {
 		return ((EFadeScreenOn*(__thiscall*)(EFadeScreenOn*))0x62C9A0)((EFadeScreenOn*)::Event::__nw(12));
 	}
@@ -37,7 +34,6 @@ public:
 
 class EPause : public Event::Event {
 public:
-
 	static EPause* Create(int a1, int a2, int a3) {
 		return ((EPause*(__thiscall*)(EPause*, int, int, int))0x623A90)((EPause*)::Event::__nw(20), a1, a2, a3);
 	}
@@ -45,15 +41,20 @@ public:
 
 class EQuitToFE : public Event::Event {
 public:
-
 	static EQuitToFE* Create(eGarageType a1, const char* a2) {
 		return ((EQuitToFE*(__thiscall*)(EQuitToFE*, eGarageType, const char*))0x62FE40)((EQuitToFE*)::Event::__nw(16), a1, a2);
 	}
 };
 
+class EEnterBin : public Event::Event {
+public:
+	static EEnterBin* Create(int a1) {
+		return ((EEnterBin*(__thiscall*)(EEnterBin*, int))0x62C2D0)((EEnterBin*)::Event::__nw(12), a1);
+	}
+};
+
 class E911Call : public Event::Event {
 public:
-
 	static E911Call* Create() {
 		return ((E911Call*(*)())0x62A490)();
 	}
@@ -61,7 +62,6 @@ public:
 
 class EDDaySpeech : public Event::Event {
 public:
-
 	static EDDaySpeech* Create() {
 		return ((EDDaySpeech*(*)())0x62B6B0)();
 	}
@@ -69,7 +69,6 @@ public:
 
 class EResetProps : public Event::Event {
 public:
-
 	static EResetProps* Create() {
 		return ((EResetProps*(*)())0x6305B0)();
 	}

@@ -95,6 +95,7 @@ public:
 	static inline auto GetNumOpponents = (int(__thiscall*)(GRaceParameters*))0x5FACD0;
 	static inline auto GetPlayerCarType = (const char*(__thiscall*)(GRaceParameters*))0x5FC5C0;
 	static inline auto GetPlayerCarPerformance = (float(__thiscall*)(GRaceParameters*))0x5FC620;
+	static inline auto GetNoPostRaceScreen = (bool(__thiscall*)(GRaceParameters*))0x5FC320;
 };
 static_assert(sizeof(GRaceParameters) == 0x14);
 

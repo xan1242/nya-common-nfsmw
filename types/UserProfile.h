@@ -102,6 +102,11 @@ struct SMSMessage {
 	unsigned char Handle;
 	unsigned char Flags;
 	unsigned short SortOrder;
+
+	bool IsInInbox() { return (Flags & 6) != 0; }
+	bool IsValid() { return Handle != 0xFF; }
+
+	static inline auto IsVoice = (bool(__thiscall*)(SMSMessage*))0x56D750;
 };
 
 class CareerSettings {
