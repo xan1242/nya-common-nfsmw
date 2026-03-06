@@ -44,7 +44,8 @@ public:
 
 	static inline auto& JollyRancherResponse = *(JollyRancherResponsePacket*)0x911190;
 	static inline auto& StopUpdating = *(bool*)0x911020;
-	static inline auto SetCameraMatrix = (void(__thiscall*)(Camera*, const bMatrix4*, float))0x4700D0;
+
+	auto SetCameraMatrix(const bMatrix4* a1, float a2) { auto f = (void(__thiscall*)(Camera*, const bMatrix4*, float))0x4700D0; return f(this, a1, a2); }
 };
 //static_assert(sizeof(Camera) == 0x290);
 
@@ -93,5 +94,5 @@ public:
 	static inline auto SetAction = (void(__cdecl*)(int, const char*))0x479EB0;
 };
 
-auto Camera_SetGenericCamera = (void(__cdecl*)(const char*, const char*))0x604A50;
+auto Camera_SetGenericCamera = (void(*)(const char*, const char*))0x604A50;
 auto& Tweak_ForceICEReplay = *(bool*)0x91103A;

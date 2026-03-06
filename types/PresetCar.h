@@ -11,4 +11,4 @@ public:
 static_assert(sizeof(PresetCar) == 0x290);
 auto& PresetCarList = *(bList<PresetCar>*)0x9B2BF4;
 
-auto FindFEPresetCar = (PresetCar*(__cdecl*)(uint32_t))0x748130;
+auto FindFEPresetCar = (PresetCar*(*)(uint32_t))0x748130;

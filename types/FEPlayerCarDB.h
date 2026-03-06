@@ -8,10 +8,10 @@ public:
 	int8_t CareerHandle; // +11
 	uint16_t Padd; // +12
 
-	static inline auto Default = (void(__thiscall*)(FECarRecord*))0x5815B0;
-	static inline auto GetDebugName = (const char*(__thiscall*)(FECarRecord*))0x581BF0;
-	static inline auto GetNameHash = (uint32_t(__thiscall*)(FECarRecord*))0x591160;
-	static inline auto GetType = (uint32_t(__thiscall*)(FECarRecord*))0x5816B0;
+	auto Default() { auto f = (void(__thiscall*)(FECarRecord*))0x5815B0; return f(this); }
+	auto GetDebugName() { auto f = (const char*(__thiscall*)(FECarRecord*))0x581BF0; return f(this); }
+	auto GetNameHash() { auto f = (uint32_t(__thiscall*)(FECarRecord*))0x591160; return f(this); }
+	auto GetType() { auto f = (uint32_t(__thiscall*)(FECarRecord*))0x5816B0; return f(this); }
 };
 static_assert(sizeof(FECarRecord) == 0x14);
 
@@ -33,10 +33,10 @@ public:
 	int Preset;
 	uint8_t Handle;
 
-	static inline auto Default = (void(__thiscall*)(FECustomizationRecord*))0x56F1B0;
-	static inline auto BecomePreset = (void(__thiscall*)(FECustomizationRecord*, PresetCar* preset))0x56F340;
-	static inline auto WriteRecordIntoRide = (void(__thiscall*)(FECustomizationRecord*, RideInfo* ride))0x56F2B0;
-	static inline auto WriteRideIntoRecord = (void(__thiscall*)(FECustomizationRecord*, const RideInfo* ride))0x56F2F0;
+	auto Default() { auto f = (void(__thiscall*)(FECustomizationRecord*))0x56F1B0; return f(this); }
+	auto BecomePreset(PresetCar* preset) { auto f = (void(__thiscall*)(FECustomizationRecord*, PresetCar* preset))0x56F340; return f(this, preset); }
+	auto WriteRecordIntoRide(RideInfo* ride) { auto f = (void(__thiscall*)(FECustomizationRecord*, RideInfo* ride))0x56F2B0; return f(this, ride); }
+	auto WriteRideIntoRecord(const RideInfo* ride) { auto f = (void(__thiscall*)(FECustomizationRecord*, const RideInfo* ride))0x56F2F0; return f(this, ride); }
 };
 static_assert(sizeof(FECustomizationRecord) == 0x198);
 

@@ -78,24 +78,27 @@ public:
 	virtual void GetCheckpointPosition(unsigned int index, UMath::Vector3* pos) = 0;
 	virtual void GetCheckpointDirection(unsigned int index, UMath::Vector3* dir) = 0;
 
-	static inline auto GetRaceType = (GRace::Type(__thiscall*)(GRaceParameters*))0x5FAA20;
-	static inline auto GetChallengeType = (int(__thiscall*)(GRaceParameters*))0x5FA9A0;
-	static inline auto GetNumLaps = (int(__thiscall*)(GRaceParameters*))0x5FBA00;
-	static inline auto GetIsLoopingRace = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0;
-	static inline auto GetIsPursuitRace = (bool(__thiscall*)(GRaceParameters*))0x5FBE70;
-	static inline auto GetIsDDayRace = (bool(__thiscall*)(GRaceParameters*))0x5FBD20;
-	static inline auto GetIsBossRace = (bool(__thiscall*)(GRaceParameters*))0x5FBD90;
-	static inline auto GetEventID = (const char*(__thiscall*)(GRaceParameters*))0x5FBA70;
-	static inline auto ExtractDirection = (const char*(__stdcall*)(Attrib::Instance* collection, UMath::Vector3* dir, float rotate))0x5DCD00;
-	static inline auto GetStartPosition = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAD10;
-	static inline auto GetStartDirection = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FAE00;
-	static inline auto GetFinishPosition = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAF70;
-	static inline auto GetFinishDirection = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FB060;
-	static inline auto GetNumCheckpoints = (int(__thiscall*)(GRaceParameters*))0x5FCA40;
-	static inline auto GetNumOpponents = (int(__thiscall*)(GRaceParameters*))0x5FACD0;
-	static inline auto GetPlayerCarType = (const char*(__thiscall*)(GRaceParameters*))0x5FC5C0;
-	static inline auto GetPlayerCarPerformance = (float(__thiscall*)(GRaceParameters*))0x5FC620;
-	static inline auto GetNoPostRaceScreen = (bool(__thiscall*)(GRaceParameters*))0x5FC320;
+	auto GetRaceType() { auto f = (GRace::Type(__thiscall*)(GRaceParameters*))0x5FAA20; return f(this); }
+	auto GetChallengeType() { auto f = (int(__thiscall*)(GRaceParameters*))0x5FA9A0; return f(this); }
+	auto GetNumLaps() { auto f = (int(__thiscall*)(GRaceParameters*))0x5FBA00; return f(this); }
+	auto GetIsLoopingRace() { auto f = (bool(__thiscall*)(GRaceParameters*))0x5FBEE0; return f(this); }
+	auto GetIsPursuitRace() { auto f = (bool(__thiscall*)(GRaceParameters*))0x5FBE70; return f(this); }
+	auto GetIsDDayRace() { auto f = (bool(__thiscall*)(GRaceParameters*))0x5FBD20; return f(this); }
+	auto GetIsBossRace() { auto f = (bool(__thiscall*)(GRaceParameters*))0x5FBD90; return f(this); }
+	auto GetEventID() { auto f = (const char*(__thiscall*)(GRaceParameters*))0x5FBA70; return f(this); }
+	auto ExtractDirection(Attrib::Instance* collection, UMath::Vector3* dir, float rotate) {
+		auto f = (const char*(__thiscall*)(GRaceParameters*, Attrib::Instance* collection, UMath::Vector3* dir, float rotate))0x5DCD00;
+		return f(this, collection, dir, rotate);
+	}
+	auto GetStartPosition(UMath::Vector3* pos) { auto f = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAD10; return f(this, pos); }
+	auto GetStartDirection(UMath::Vector3* dir) { auto f = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FAE00; return f(this, dir); }
+	auto GetFinishPosition(UMath::Vector3* pos) { auto f = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* pos))0x5FAF70; return f(this, pos); }
+	auto GetFinishDirection(UMath::Vector3* dir) { auto f = (void(__thiscall*)(GRaceParameters*, UMath::Vector3* dir))0x5FB060; return f(this, dir); }
+	auto GetNumCheckpoints() { auto f = (int(__thiscall*)(GRaceParameters*))0x5FCA40; return f(this); }
+	auto GetNumOpponents() { auto f = (int(__thiscall*)(GRaceParameters*))0x5FACD0; return f(this); }
+	auto GetPlayerCarType() { auto f = (const char*(__thiscall*)(GRaceParameters*))0x5FC5C0; return f(this); }
+	auto GetPlayerCarPerformance() { auto f = (float(__thiscall*)(GRaceParameters*))0x5FC620; return f(this); }
+	auto GetNoPostRaceScreen() { auto f = (bool(__thiscall*)(GRaceParameters*))0x5FC320; return f(this); }
 };
 static_assert(sizeof(GRaceParameters) == 0x14);
 
@@ -147,8 +150,8 @@ public:
 	float mSavedSpeed;
 	bool mDNF;
 
-	static inline auto TotalVehicle = (void(__thiscall*)(GRacerInfo*))0x6002C0;
-	static inline auto BlowEngine = (void(__thiscall*)(GRacerInfo*))0x600420;
+	void TotalVehicle() { auto f = (void(__thiscall*)(GRacerInfo*))0x6002C0; return f(this); }
+	void BlowEngine() { auto f = (void(__thiscall*)(GRacerInfo*))0x600420; return f(this); }
 };
 static_assert(sizeof(GRacerInfo) == 0x194);
 static_assert(offsetof(GRacerInfo, mRanking) == 0x10);
@@ -287,20 +290,14 @@ public:
 
 	static inline auto& fObj = *(GRaceStatus**)0x91E000;
 
-	static inline auto DetermineRaceLength = (void(__thiscall*)(GRaceStatus*))0x5FEF30;
 	static inline auto DisableBarriers = (void(*)())0x5DBF00;
-	static inline auto EnableBarriers = (void(__thiscall*)(GRaceStatus*))0x5FE330;
-	static inline auto GetRaceTimeRemaining = (float(__thiscall*)(GRaceStatus*))0x5FE090;
-	static inline auto CanUnspawnRoamer = (bool(__thiscall*)(GRaceStatus*, const IVehicle* roamer))0x5E8960;
 
-	GRacerInfo* GetRacerInfo(int a1) {
-		auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, int))0x5DBED0;
-		return f(this, a1);
-	}
-	GRacerInfo* GetRacerInfo(ISimable* a1) {
-		auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*))0x5E8B20;
-		return f(this, a1);
-	}
+	auto DetermineRaceLength() { auto f = (void(__thiscall*)(GRaceStatus*))0x5FEF30; return f(this); }
+	auto EnableBarriers() { auto f = (void(__thiscall*)(GRaceStatus*))0x5FE330; return f(this); }
+	auto GetRaceTimeRemaining() { auto f = (float(__thiscall*)(GRaceStatus*))0x5FE090; return f(this); }
+	auto CanUnspawnRoamer(const IVehicle* roamer) { auto f = (bool(__thiscall*)(GRaceStatus*, const IVehicle* roamer))0x5E8960; return f(this, roamer); }
+	GRacerInfo* GetRacerInfo(int a1) { auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, int))0x5DBED0; return f(this, a1); }
+	GRacerInfo* GetRacerInfo(ISimable* a1) { auto f = (GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*))0x5E8B20; return f(this, a1); }
 };
 static_assert(sizeof(GRaceStatus) == 0x4558);
 static_assert(offsetof(GRaceStatus, mRaceParms) == 0x1968);
@@ -347,7 +344,7 @@ public:
 
 	static inline auto& mObj = *(GRaceDatabase**)0x91E004;
 
-	static inline auto GetStartupRace = (GRaceParameters*(__thiscall*)(GRaceDatabase*))0x5DCA00;
-	static inline auto GetRaceFromHash = (GRaceParameters*(__thiscall*)(GRaceDatabase*, uint32_t))0x5FB710;
+	auto GetStartupRace() { auto f = (GRaceParameters*(__thiscall*)(GRaceDatabase*))0x5DCA00; return f(this); }
+	auto GetRaceFromHash(uint32_t a1) { auto f = (GRaceParameters*(__thiscall*)(GRaceDatabase*, uint32_t))0x5FB710; return f(this, a1); }
 };
 static_assert(sizeof(GRaceDatabase) == 0x40);

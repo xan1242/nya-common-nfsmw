@@ -18,8 +18,8 @@ namespace Sim {
 		virtual float OnManageTime(float real_time_delta, float sim_speed) = 0;
 	};
 
-	auto SetStream = (void(__cdecl*)(const UMath::Vector3* location, bool blocking))0x6F1170;
-	auto GetTime = (float(__cdecl*)())0x6E8DE0;
+	auto SetStream = (void(*)(const UMath::Vector3* location, bool blocking))0x6F1170;
+	auto GetTime = (float(*)())0x6E8DE0;
 }
 
 class IActivity;

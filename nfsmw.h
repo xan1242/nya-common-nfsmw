@@ -111,7 +111,7 @@ public:
 
 class NISListenerActivity {
 public:
-	static inline auto MessageBusted = (void(__thiscall*)(NISListenerActivity*, int))0x44DC70;
+	auto MessageBusted(int a1) { auto f = (void(__thiscall*)(NISListenerActivity*, int))0x44DC70; return f(this, a1); }
 };
 
 class PauseMenu {
@@ -121,7 +121,7 @@ public:
 
 class ICEManager {
 public:
-	static inline auto SetGenericCameraToPlay = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0;
+	auto SetGenericCameraToPlay(const char* a1, const char* a2) { auto f = (void(__thiscall*)(ICEManager*, const char*, const char*))0x46E2D0; return f(this, a1, a2); }
 };
 
 class RigidBody {
@@ -144,8 +144,8 @@ class GManager {
 public:
 	static inline auto& mObj = *(GManager**)0x91E00C;
 
-	static inline auto AddSMS = (void(__thiscall*)(GManager*, int))0x5F5120;
-	static inline auto DispatchSMSMessage = (void(__thiscall*)(GManager*, int))0x5DDD20;
+	auto AddSMS(int a1) { auto f = (void(__thiscall*)(GManager*, int))0x5F5120; return f(this, a1); }
+	auto DispatchSMSMessage(int a1) { auto f = (void(__thiscall*)(GManager*, int))0x5DDD20; return f(this, a1); }
 };
 
 auto ExecuteRenderData = (void(*)())0x6E2F50;

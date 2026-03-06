@@ -106,7 +106,7 @@ struct SMSMessage {
 	bool IsInInbox() { return (Flags & 6) != 0; }
 	bool IsValid() { return Handle != 0xFF; }
 
-	static inline auto IsVoice = (bool(__thiscall*)(SMSMessage*))0x56D750;
+	auto IsVoice() { auto f = (bool(__thiscall*)(SMSMessage*))0x56D750; return f(this); }
 };
 
 class CareerSettings {
@@ -255,10 +255,10 @@ public:
 	cFinishedRaceStats FinishedRaceStats;
 	ePostRaceOptions PostRaceOptionChosen;
 
-	static inline auto IsFinalEpicChase = (bool(__thiscall*)(cFrontendDatabase*))0x56DC00;
-	static inline auto GetRaceNameHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E010;
-	static inline auto GetRaceIconHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E090;
-	static inline auto GetMilestoneIconHash = (uint32_t(__thiscall*)(cFrontendDatabase*, int, bool))0x56DEA0;
+	auto IsFinalEpicChase() { auto f = (bool(__thiscall*)(cFrontendDatabase*))0x56DC00; return f(this); }
+	auto GetRaceNameHash(int a1) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E010; return f(this, a1); }
+	auto GetRaceIconHash(int a1) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, int))0x56E090; return f(this, a1); }
+	auto GetMilestoneIconHash(int a1, bool a2) { auto f = (uint32_t(__thiscall*)(cFrontendDatabase*, int, bool))0x56DEA0; return f(this, a1, a2); }
 };
 static_assert(offsetof(cFrontendDatabase, CurrentUserProfiles[0]) == 0x10);
 static_assert(offsetof(cFrontendDatabase, FEGameMode) == 0x12C);

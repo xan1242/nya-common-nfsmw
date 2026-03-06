@@ -11,8 +11,8 @@ namespace Attrib {
 
 	class Class {
 	public:
-		static inline auto GetFirstCollection = (uint32_t(__thiscall*)(Class*))0x456B00;
-		static inline auto GetNextCollection = (uint32_t(__thiscall*)(Class*, uint32_t))0x456B20;
+		auto GetFirstCollection() { auto f = (uint32_t(__thiscall*)(Class*))0x456B00; return f(this); }
+		auto GetNextCollection(uint32_t a1) { auto f = (uint32_t(__thiscall*)(Class*, uint32_t))0x456B20; return f(this, a1); }
 	};
 
 	class Collection {
@@ -26,7 +26,10 @@ namespace Attrib {
 		Vault* mSource;
 		char* mNamePtr;
 
-		static inline auto GetData = (void*(__thiscall*)(Collection*, uint32_t attributeKey, uint32_t index))0x454190;
+		auto GetData(uint32_t attributeKey, uint32_t index) {
+			auto f = (void*(__thiscall*)(Collection*, uint32_t attributeKey, uint32_t index))0x454190;
+			return f(this, attributeKey, index);
+		}
 	};
 	static_assert(sizeof(Collection) == 0x2C);
 
@@ -47,8 +50,11 @@ namespace Attrib {
 			((void(__thiscall*)(Instance*))0x45A430)(this);
 		}
 
-		static inline auto GetAttributePointer = (void*(__thiscall*)(Instance*, uint32_t attributeKey, uint32_t index))0x454810;
-		static inline auto GetCollection = (uint32_t(__thiscall*)(Instance*))0x452430;
+		auto GetAttributePointer(uint32_t attributeKey, uint32_t index) {
+			auto f = (void*(__thiscall*)(Instance*, uint32_t attributeKey, uint32_t index))0x454810;
+			return f(this, attributeKey, index);
+		}
+		auto GetCollection() { auto f = (uint32_t(__thiscall*)(Instance*))0x452430; return f(this); }
 	};
 	static_assert(sizeof(Instance) == 0x14);
 
@@ -56,11 +62,11 @@ namespace Attrib {
 	public:
 		static inline auto& sThis = *(Database**)0x90DCBC;
 
-		static inline auto GetClass = (Class*(__thiscall*)(Database*, uint32_t))0x455BC0;
+		auto GetClass(uint32_t a1) { auto f = (Class*(__thiscall*)(Database*, uint32_t))0x455BC0; return f(this, a1); }
 	};
 
-	auto FindCollection = (Collection*(__cdecl*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;
-	auto StringHash32 = (uint32_t(__cdecl*)(const char*))0x4519D0;
+	auto FindCollection = (Collection*(*)(uint32_t classKey, uint32_t collectionKey))0x455FD0;
+	auto StringHash32 = (uint32_t(*)(const char*))0x4519D0;
 
 	struct RefSpec {
 		unsigned int mClassKey;

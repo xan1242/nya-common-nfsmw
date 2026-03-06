@@ -3,7 +3,7 @@ namespace NyaHelpers {
 		auto collection = Attrib::FindCollection(Attrib::StringHash32("pvehicle"), modelHash);
 		if (!collection) return modelHash;
 
-		if (auto type = (uint32_t*)Attrib::Collection::GetData(collection, Attrib::StringHash32("frontend"), 0)) {
+		if (auto type = (uint32_t*)collection->GetData(Attrib::StringHash32("frontend"), 0)) {
 			return type[1];
 		}
 		return modelHash;
@@ -24,30 +24,30 @@ namespace NyaHelpers {
 
 	FECustomizationRecord CreateStockCarCustomizations(uint32_t carModel) {
 		FECustomizationRecord record;
-		FECustomizationRecord::Default(&record);
+		record.Default();
 
 		FECarRecord tmp;
 		tmp.FEKey = carModel;
 		tmp.VehicleKey = carModel;
 		RideInfo info;
-		RideInfo::Init(&info, FECarRecord::GetType(&tmp), CarRenderUsage_Player, false, false);
-		RideInfo::SetStockParts(&info);
-		FECustomizationRecord::WriteRideIntoRecord(&record, &info);
+		info.Init(tmp.GetType(), CarRenderUsage_Player, false, false);
+		info.SetStockParts();
+		record.WriteRideIntoRecord(&info);
 		return record;
 	}
 
 	FECustomizationRecord CreateRandomCarCustomizations(uint32_t carModel) {
 		FECustomizationRecord record;
-		FECustomizationRecord::Default(&record);
+		record.Default();
 
 		FECarRecord tmp;
 		tmp.FEKey = carModel;
 		tmp.VehicleKey = carModel;
 		RideInfo info;
-		RideInfo::Init(&info, FECarRecord::GetType(&tmp), CarRenderUsage_Player, false, false);
-		RideInfo::SetRandomParts(&info);
-		//RideInfo::SetRandomPaint(&info);
-		FECustomizationRecord::WriteRideIntoRecord(&record, &info);
+		info.Init(tmp.GetType(), CarRenderUsage_Player, false, false);
+		info.SetRandomParts();
+		//info.SetRandomPaint();
+		record.WriteRideIntoRecord(&info);
 		return record;
 	}
 
@@ -63,7 +63,7 @@ namespace NyaHelpers {
 	}
 
 	PresetCar CreatePresetCar(FECarRecord* record, FECustomizationRecord* customizations, const char* presetName) {
-		std::string carTypeName = FECarRecord::GetDebugName(record);
+		std::string carTypeName = record->GetDebugName();
 		std::transform(carTypeName.begin(), carTypeName.end(), carTypeName.begin(), [](char c){ return std::toupper(c); });
 
 		PresetCar car;

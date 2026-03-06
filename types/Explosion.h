@@ -20,5 +20,5 @@ static_assert(sizeof(ExplosionParams) == 0x2C);
 class Explosion {
 public:
 
-	static inline auto Construct = (ISimable*(__cdecl*)(Sim::Param params))0x688ED0;
+	static inline auto Construct = (ISimable*(*)(Sim::Param params))0x688ED0;
 };

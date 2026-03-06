@@ -41,4 +41,4 @@ public:
 	float mDesiredSpeed;
 	ControlSource mControlSource;*/
 };
-auto GetClosestPlayerCar = (EAX_CarState*(__cdecl*)(bVector3*))0x4BA5C0;
+auto GetClosestPlayerCar = (EAX_CarState*(*)(bVector3*))0x4BA5C0;

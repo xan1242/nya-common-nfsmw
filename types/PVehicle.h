@@ -35,8 +35,12 @@ public:
 	DriverClass mDriverClass; // +140
 	DriverStyle mDriverStyle; // +144
 
-	static inline auto Construct = (ISimable*(__cdecl*)(Sim::Param params))0x689820;
-	static inline auto LookupBehaviorSignature = (UCrc32*(__thiscall*)(PVehicle*, UCrc32 *result, const Attrib::StringKey *mechanic))0x67F0D0;
+	static inline auto Construct = (ISimable*(*)(Sim::Param params))0x689820;
+
+	auto LookupBehaviorSignature(UCrc32 *result, const Attrib::StringKey *mechanic) {
+		auto f = (UCrc32*(__thiscall*)(PVehicle*, UCrc32 *result, const Attrib::StringKey *mechanic))0x67F0D0;
+		return f(this, result, mechanic);
+	}
 };
 static_assert(offsetof(PVehicle, mDriverClass) == 0x140);
 

@@ -1,5 +1,5 @@
 namespace Event {
-	static inline auto __nw = (void*(__cdecl*)(uint32_t size))0x627400;
+	static inline auto __nw = (void*(*)(uint32_t size))0x627400;
 
 	class Event {
 	public:
