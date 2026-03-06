@@ -121,6 +121,18 @@ namespace eastl {
 			*mpEnd = value;
 			mpEnd++;
 		}
+
+		void push_front(T value) {
+			if (mpEnd >= mpCapacity) {
+				reserve(capacity() == 0 ? 1 : capacity()*2);
+			}
+
+			for (int i = size(); i > 0; i--) {
+				mpBegin[i] = mpBegin[i-1];
+			}
+			*mpBegin = value;
+			mpEnd++;
+		}
 	};
 	static_assert(sizeof(vector<void*>) == 0x10);
 }
