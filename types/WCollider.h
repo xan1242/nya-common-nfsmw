@@ -1,10 +1,13 @@
 class WCollisionInstance;
 class WCollisionTriBlock;
 class WCollisionObject;
-class WCollisionInstanceCacheList : eastl::vector<WCollisionInstance*> {};
-class WCollisionBarrierList : eastl::vector<WCollisionBarrierListEntry> {};
-class WCollisionTriList : eastl::vector<WCollisionTriBlock*> {};
-class WCollisionObjectList : eastl::vector<WCollisionObject*> {};
+class WCollisionInstanceCacheList : public eastl::vector<WCollisionInstance*> {};
+class WCollisionBarrierList : public eastl::vector<WCollisionBarrierListEntry> {
+public:
+	auto reserve(size_t num) { auto f = (void(__thiscall*)(WCollisionBarrierList*, size_t))0x77F970; return f(this, num); }
+};
+class WCollisionTriList : public eastl::vector<WCollisionTriBlock*> {};
+class WCollisionObjectList : public eastl::vector<WCollisionObject*> {};
 
 class WCollider {
 public:

@@ -87,6 +87,12 @@ namespace eastl {
 
 		auto size() { return mpEnd - mpBegin; }
 		auto empty() { return mpEnd == mpBegin; }
+
+		void push_back(T value) {
+			if (mpEnd >= mpCapacity) __debugbreak(); // i cant implement expansion like this
+			*mpEnd = value;
+			mpEnd++;
+		}
 	};
 	static_assert(sizeof(vector<void*>) == 0x10);
 }
