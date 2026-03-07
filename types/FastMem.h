@@ -1,7 +1,8 @@
-class FreeBlock;
-class AllocDesc;
 class FastMem {
 public:
+	class FreeBlock;
+	class AllocDesc;
+
 	FreeBlock* mFreeLists[64];
 	const char* mName;
 	unsigned int mExpansionSize;
