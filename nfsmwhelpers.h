@@ -1,3 +1,6 @@
+#include <string>
+#include <algorithm>
+
 namespace NyaHelpers {
 	uint32_t GetCarFEKey(uint32_t modelHash) {
 		auto collection = Attrib::FindCollection(Attrib::StringHash32("pvehicle"), modelHash);

@@ -62,5 +62,61 @@ namespace Attrib {
 				return (_LayoutStruct*)mLayoutPtr;
 			}
 		};
+
+		class tires : public Instance {
+		public:
+			struct _LayoutStruct {
+			};
+
+			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
+			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
+			//}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
+
+		class brakes : public Instance {
+		public:
+			struct _LayoutStruct {
+			};
+
+			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
+			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
+			//}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
+
+		class chassis : public Instance {
+		public:
+			struct _LayoutStruct {
+			};
+
+			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
+			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
+			//}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
+
+		class transmission : public Instance {
+		public:
+			struct _LayoutStruct {
+			};
+
+			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
+			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
+			//}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
 	}
 }

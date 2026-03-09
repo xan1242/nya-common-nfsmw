@@ -94,25 +94,7 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/FEObject.h"
 #include "types/CarPartDatabase.h"
 #include "types/Smackable.h"
-
-class Wheel {
-public:
-	WWorldPos mWorldPos;
-	UMath::Vector4 mNormal;
-	UMath::Vector3 mPosition;
-	unsigned int mFlags;
-	UMath::Vector3 mForce;
-	float mAirTime;
-	UMath::Vector3 mLocalArm;
-	float mCompression;
-	UMath::Vector3 mWorldArm;
-	int pad;
-	UMath::Vector3 mVelocity;
-	int pad2;
-	Attrib::Instance mSurface;
-	float mSurfaceStick;
-	UMath::Vector4 mIntegral;
-};
+#include "types/SuspensionRacer.h"
 
 class BuildRegion {
 public:
@@ -225,6 +207,7 @@ auto& WorldTimeElapsed = *(float*)0x925970;
 
 auto& SkipFE = *(bool*)0x926064;
 auto& SkipFEPlayerCar = *(const char**)0x8F86A8;
+auto& SkipFEPlayerPerformance = *(float*)0x926078;
 auto& SkipMovies = *(bool*)0x926144;
 
 auto& GameWindow = *(HWND*)0x982BF4;
