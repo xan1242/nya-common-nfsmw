@@ -29,6 +29,7 @@ public:
 	float fDistanceToSq;
 };
 
+class WCollider;
 class WWorldPos {
 public:
 	WCollisionTri fFace;
@@ -37,5 +38,11 @@ public:
 	uint32_t fUsageCount : 16;
 	float fYOffset;
 	Attrib::Collection* fSurface;
+
+	void SetTolerance(float liftAmount) {
+		fYOffset = liftAmount;
+	}
+
+	static inline auto Update = (bool(__thiscall*)(WWorldPos*, UMath::Vector3* pos, UMath::Vector4* dest, bool usecache, const WCollider* collider, bool keep_valid))0x789CC0;
 };
 static_assert(sizeof(WWorldPos) == 0x3C);

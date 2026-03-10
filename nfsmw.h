@@ -68,6 +68,7 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/IGameState.h"
 #include "types/ISceneryModel.h"
 #include "types/IDisposable.h"
+#include "types/ISteeringWheel.h"
 #include "types/IHud.h"
 #include "types/SimSystem.h"
 #include "types/GRaceStatus.h"
@@ -94,7 +95,51 @@ auto GAME_free = (void(*)(void*))0x7C7250;
 #include "types/FEObject.h"
 #include "types/CarPartDatabase.h"
 #include "types/Smackable.h"
+#include "types/Behavior.h"
+#ifndef NYA_COMMON_NOSUSPRACER
 #include "types/SuspensionRacer.h"
+#endif
+
+class SimSurface : public Attrib::Gen::simsurface {
+public:
+	static inline auto& kNull = *(SimSurface*)0x988E84;
+
+	SimSurface() {}
+};
+
+class TableBase {
+public:
+	int NumEntries;
+	float MinArg;
+	float MaxArg;
+	float IndexMultiplier;
+
+	TableBase() {}
+
+	TableBase(int num, float min, float max) {
+		NumEntries = num;
+		MinArg = min;
+		MaxArg = max;
+		IndexMultiplier = (NumEntries - 1) / (MaxArg - MinArg);
+	}
+};
+
+class Table : public TableBase {
+public:
+	const float* pTable;
+
+	Table(const float *table, int num, float min, float max) : TableBase(num, min, max), pTable(table) {}
+
+	Table(const float* table, int numEntries, float minArg, float maxArg, float indexMultiplier) {
+		pTable = table;
+		NumEntries = numEntries;
+		MinArg = minArg;
+		MaxArg = maxArg;
+		IndexMultiplier = indexMultiplier;
+	}
+
+	float GetValue(float input);
+};
 
 class BuildRegion {
 public:

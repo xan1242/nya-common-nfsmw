@@ -4,14 +4,6 @@ public:
 	uint8_t _0[0x38];
 };
 
-class AxlePair {
-public:
-	float Front;
-	float Back;
-
-	float At(int i) { return (&Front)[i]; }
-};
-
 class Wheel {
 public:
 	WWorldPos mWorldPos;
@@ -105,36 +97,6 @@ public:
 
 	auto UpdatePosition(UMath::Vector3 &body_av, UMath::Vector3 &body_lv, UMath::Matrix4 &body_matrix, UMath::Vector3 &cog, float dT, float wheel_radius, bool usecache, const WCollider *collider, float vehicle_height) { auto f = (void(__thiscall*)(Wheel*, UMath::Vector3*, UMath::Vector3*, UMath::Matrix4*, UMath::Vector3*, float, float, bool, const WCollider*, float))0x671530; return f(this, &body_av, &body_lv, &body_matrix, &cog, dT, wheel_radius, usecache, collider, vehicle_height); }
 };
-
-class PhysicsObject;
-class Behavior {
-public:
-	uint8_t _0[0x2D];
-	bool mPaused;
-	PhysicsObject* mOwner;
-	ISimable* mIOwner;
-	const UCrc32 mMechanic;
-	const UCrc32 mSignature;
-	int mPriority;
-	void* mProfile;
-
-	ISimable* GetOwner() {
-		return mIOwner;
-	}
-};
-static_assert(offsetof(Behavior, mPaused) == 0x2D);
-static_assert(offsetof(Behavior, mOwner) == 0x30);
-static_assert(offsetof(Behavior, mPriority) == 0x40);
-
-class VehicleBehavior : public Behavior {
-public:
-	IVehicle* mVehicle;
-
-	IVehicle* GetVehicle() {
-		return mVehicle;
-	}
-};
-static_assert(offsetof(VehicleBehavior, mVehicle) == 0x48);
 
 class Chassis : public VehicleBehavior {
 public:

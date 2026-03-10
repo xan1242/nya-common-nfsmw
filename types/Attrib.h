@@ -50,6 +50,10 @@ namespace Attrib {
 			((void(__thiscall*)(Instance*))0x45A430)(this);
 		}
 
+		auto Change(const Collection* collection) {
+			auto f = (void(__thiscall*)(Instance*, const Collection* collection))0x45A760;
+			return f(this, collection);
+		}
 		auto GetAttributePointer(uint32_t attributeKey, uint32_t index) {
 			auto f = (void*(__thiscall*)(Instance*, uint32_t attributeKey, uint32_t index))0x454810;
 			return f(this, attributeKey, index);

@@ -1,3 +1,11 @@
+class AxlePair {
+public:
+	float Front;
+	float Back;
+
+	float At(int i) { return (&Front)[i]; }
+};
+
 namespace Attrib {
 	namespace Gen {
 		class pvehicle : public Instance {
@@ -113,6 +121,37 @@ namespace Attrib {
 			//frontend(uint32_t collection, uint32_t msgPort, void* pInterface) {
 			//	((frontend*(__thiscall*)(frontend*, uint32_t, uint32_t, void*))0x51E1A0)(this, collection, msgPort, pInterface);
 			//}
+
+			_LayoutStruct* GetLayout() {
+				return (_LayoutStruct*)mLayoutPtr;
+			}
+		};
+
+		class simsurface : public Instance {
+		public:
+			struct _LayoutStruct {
+				/*Private _Array_TireDriveEffects;
+				TireEffectRecord TireDriveEffects[3];
+				Private _Array_TireSlideEffects;
+				TireEffectRecord TireSlideEffects[3];
+				Private _Array_TireSlipEffects;
+				TireEffectRecord TireSlipEffects[3];
+				RoadNoiseRecord RenderNoise;
+				const char * CollectionName;
+				float GROUND_FRICTION;
+				float ROLLING_RESISTANCE;
+				float WORLD_FRICTION;
+				float DRIVE_GRIP;
+				float LATERAL_GRIP;
+				float STICK;
+				unsigned short WheelEffectFrequency;
+				unsigned char WheelEffectIntensity;*/
+			};
+
+			simsurface() {}
+			simsurface(uint32_t collection, uint32_t msgPort, void* pInterface) {
+				((simsurface*(__thiscall*)(simsurface*, uint32_t, uint32_t, void*))0x467C30)(this, collection, msgPort, pInterface);
+			}
 
 			_LayoutStruct* GetLayout() {
 				return (_LayoutStruct*)mLayoutPtr;
