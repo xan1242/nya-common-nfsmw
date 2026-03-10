@@ -21,6 +21,7 @@ class IInput;
 class IInputPlayer;
 class IFeedback;
 class ISteeringWheel;
+class PlayerSettings;
 
 class IPlayer : public UCOM::IUnknown {
 public:
@@ -30,7 +31,7 @@ public:
 	virtual bool IsLocal() = 0;
 	virtual const UMath::Vector3* GetPosition() = 0;
 	virtual void SetPosition(const UMath::Vector3* position) = 0;
-	virtual void* GetSettings() = 0;
+	virtual PlayerSettings* GetSettings() = 0;
 	virtual void SetSettings(int fe_index) = 0;
 	virtual int GetSettingsIndex() = 0;
 	virtual IHud* GetHud() = 0;

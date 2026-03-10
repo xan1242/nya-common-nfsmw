@@ -106,9 +106,28 @@ public:
 	auto UpdatePosition(UMath::Vector3 &body_av, UMath::Vector3 &body_lv, UMath::Matrix4 &body_matrix, UMath::Vector3 &cog, float dT, float wheel_radius, bool usecache, const WCollider *collider, float vehicle_height) { auto f = (void(__thiscall*)(Wheel*, UMath::Vector3*, UMath::Vector3*, UMath::Matrix4*, UMath::Vector3*, float, float, bool, const WCollider*, float))0x671530; return f(this, &body_av, &body_lv, &body_matrix, &cog, dT, wheel_radius, usecache, collider, vehicle_height); }
 };
 
-class VehicleBehavior {
+class PhysicsObject;
+class Behavior {
 public:
-	uint8_t _0[0x48];
+	uint8_t _0[0x2D];
+	bool mPaused;
+	PhysicsObject* mOwner;
+	ISimable* mIOwner;
+	const UCrc32 mMechanic;
+	const UCrc32 mSignature;
+	int mPriority;
+	void* mProfile;
+
+	ISimable* GetOwner() {
+		return mIOwner;
+	}
+};
+static_assert(offsetof(Behavior, mPaused) == 0x2D);
+static_assert(offsetof(Behavior, mOwner) == 0x30);
+static_assert(offsetof(Behavior, mPriority) == 0x40);
+
+class VehicleBehavior : public Behavior {
+public:
 	IVehicle* mVehicle;
 
 	IVehicle* GetVehicle() {
@@ -398,6 +417,8 @@ public:
 		void IncBurnOutAllow(float t) {
 			mBurnOutAllow += t;
 		}
+
+		auto Update(float dT, float speedmph, float max_slip, int max_slip_wheel, float yaw) { auto f = (void(__thiscall*)(Burnout*, float, float, float, int, float))0x69EAC0; return f(this, dT, speedmph, max_slip, max_slip_wheel, yaw); }
 	};
 
 	struct Steering {
@@ -445,8 +466,12 @@ public:
 		return *mTires[i];
 	}
 
+	auto CalcYawControlLimit(float speed) { auto f = (float(__thiscall*)(SuspensionRacer*, float))0x69EBF0; return f(this, speed); }
+	auto DoDrifting(State& state) { auto f = (void(__thiscall*)(SuspensionRacer*, State*))0x6A9760; return f(this, &state); }
 	auto DoSteering(State& state, UMath::Vector3& right, UMath::Vector3& left) { auto f = (void(__thiscall*)(SuspensionRacer*, State*, UMath::Vector3*, UMath::Vector3*))0x69E9E0; return f(this, &state, &right, &left); }
 	auto TuneWheelParams(State& state) { auto f = (void(__thiscall*)(SuspensionRacer*, State*))0x6A9B40; return f(this, &state); }
 };
 static_assert(sizeof(SuspensionRacer::Steering) == 0x98);
 static_assert(offsetof(SuspensionRacer, mTires) == 0x1B4);
+
+auto YawFrictionBoost = (float(*)(float yaw, float ebrake, float speed, float yawcontrol, float grade))0x68EF10;
