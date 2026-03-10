@@ -18,7 +18,7 @@ public:
 	int pad;
 	UMath::Vector3 mVelocity;
 	int pad2;
-	Attrib::Instance mSurface;
+	Attrib::Gen::simsurface mSurface;
 	float mSurfaceStick;
 	UMath::Vector4 mIntegral;
 
@@ -78,7 +78,7 @@ public:
 		mCompression = std::max(c, 0.0f);
 	}
 
-	const Attrib::Instance *GetSurface() const {
+	const Attrib::Gen::simsurface *GetSurface() const {
 		return &mSurface;
 	}
 
@@ -159,6 +159,8 @@ public:
 	float mJumpTime;
 	float mJumpAlititude;
 	float mTireHeat;
+
+	auto ComputeState(float dT, State& state) { auto f = (void(__thiscall*)(Chassis*, float, State*))0x69D4D0; return f(this, dT, &state); }
 };
 static_assert(offsetof(Chassis, mRBComplex) == 0x54);
 static_assert(offsetof(Chassis, mTireHeat) == 0x8C);
